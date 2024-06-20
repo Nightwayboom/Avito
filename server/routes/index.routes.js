@@ -6,7 +6,7 @@ const propertyCategotyRoutes = require('./api/propertyCategory.routes');
 const tokensRoutes = require('./api/tokens.routes');
 
 router.use('/property', propertyRoutes);
-router.use('/propertyCategoty', propertyCategotyRoutes);
+router.use('/propertyCategory', propertyCategotyRoutes);
 router.use('/auth', authRoutes);
 router.use('/tokens', tokensRoutes);
 

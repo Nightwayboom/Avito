@@ -1,21 +1,22 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class PropertyCategory extends Model {
-    static associate({Property}) {
-      this.belongsTo(Property, {foreignKey:'propertyCategoryId'})
+    static associate({ Property }) {
+      this.hasMany(Property, { foreignKey: "propertyCategoryId" });
     }
   }
-  PropertyCategory.init({
-    title: {
-      allowNull: false,
-      type: DataTypes.TEXT
+  PropertyCategory.init(
+    {
+      title: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
     },
-  }, {
-    sequelize,
-    modelName: 'PropertyCategory',
-  });
+    {
+      sequelize,
+      modelName: "PropertyCategory",
+    }
+  );
   return PropertyCategory;
 };
