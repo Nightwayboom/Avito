@@ -5,7 +5,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
 
-// промежуточные функции
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(removeHeaders);

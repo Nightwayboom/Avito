@@ -7,14 +7,14 @@ const jwtConfig = require('../../config/jwtConfig');
 router.post('/registration', async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    // проверка на пустые поля
+
     if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
       res.status(400).json({ message: 'заполните все поля' });
       return;
     }
 
     const userInDb = await User.findOne({ where: { email } });
-    // проверяем наличе в бд по email
+
     if (userInDb) {
       res
         .status(400)
@@ -32,7 +32,7 @@ router.post('/registration', async (req, res) => {
     if (user) {
       res
         .status(201)
-        //либо пишите ручкамм 'refresh'
+
         .cookie('refresh', refreshToken, { httpOnly: true })
         .json({ message: 'success', user, accessToken });
       return;
@@ -47,14 +47,14 @@ router.post('/registration', async (req, res) => {
 router.post('/authorization', async (req, res) => {
   try {
     const { email, password } = req.body;
-    // проверка на пустые поля
+
     if (email.trim() === '' || password.trim() === '') {
       res.status(400).json({ message: 'заполните все поля' });
       return;
     }
     const user = await User.findOne({ where: { email } });
     if (user) {
-      //                                      пароль    хэш пароль из бд
+      //                                     
       const isCompare = await bcrypt.compare(password, user.password);
       if (isCompare) {
         delete user.dataValues.password;
