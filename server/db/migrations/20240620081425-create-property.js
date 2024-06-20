@@ -15,7 +15,9 @@ module.exports = {
         references: {
           model: 'PropertyCategories',
           key: 'id' 
-        }
+        },
+        onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
       },
       // userId: {
       //   allowNull: ,
