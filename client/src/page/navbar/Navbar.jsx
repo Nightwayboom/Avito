@@ -1,4 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import requestAxios, { setAccessToken } from '../../services/axios';
+import './Navbar.css';
+
 function Navbar({ user, setUser }) {
     const onHandleLogout = async () => {
         const { data } = await requesAxios.get('/auth/logout')
