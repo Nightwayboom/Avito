@@ -4,17 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class PropertyCategory extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.hasMany(Property, 'propertyCategoryId')
     }
   }
   PropertyCategory.init({
-    title: DataTypes.TEXT
+    title: {
+      allowNull: false,
+      type: DataTypes.TEXT
+    },
   }, {
     sequelize,
     modelName: 'PropertyCategory',

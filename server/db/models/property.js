@@ -4,22 +4,36 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.hasMany(PropertyCategory, 'propertyCategoryId')
+      this.hasOne(Favorite, 'id')
     }
   }
   Property.init({
-    propertyCategoryId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    title: DataTypes.TEXT,
-    price: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    photo: DataTypes.TEXT
+    propertyCategoryId: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    userId: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    title: {
+      allowNull: false,
+      type: DataTypes.TEXT
+    },
+    price: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    description: {
+      allowNull: false,
+      type: DataTypes.TEXT
+    },
+    photo: {
+      allowNull: true,
+      type: DataTypes.TEXT
+    },
   }, {
     sequelize,
     modelName: 'Property',

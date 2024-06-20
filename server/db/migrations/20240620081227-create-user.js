@@ -10,26 +10,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       lastName: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       email: {
+        unique: true,
+        allowNull: false,
         type: Sequelize.TEXT
       },
       password: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       isAdmin: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
