@@ -1,42 +1,43 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
-    static associate({PropertyCategory,Favorite}) {
-      this.hasMany(PropertyCategory, {foreignKey:'propertyCategoryId'})
-      this.hasOne(Favorite,{foreignKey: 'id'})
+    static associate({ PropertyCategory, Favorite }) {
+      this.hasMany(PropertyCategory, { foreignKey: "propertyCategoryId" });
+      this.hasOne(Favorite, { foreignKey: "id" });
     }
   }
-  Property.init({
-    propertyCategoryId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
+  Property.init(
+    {
+      propertyCategoryId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      // userId: {
+      //   allowNull: false,
+      //   type: DataTypes.INTEGER
+      // },
+      title: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      price: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      description: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      photo: {
+        allowNull: true,
+        type: DataTypes.TEXT,
+      },
     },
-    userId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
-    },
-    title: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    },
-    price: {
-      allowNull: false,
-      type: DataTypes.INTEGER
-    },
-    description: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    },
-    photo: {
-      allowNull: true,
-      type: DataTypes.TEXT
-    },
-  }, {
-    sequelize,
-    modelName: 'Property',
-  });
+    {
+      sequelize,
+      modelName: "Property",
+    }
+  );
   return Property;
 };
