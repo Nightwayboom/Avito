@@ -7,32 +7,42 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyCategoryId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'PropertyCategories',
+          key: 'id' 
+        }
       },
-      userId: {
-        type: Sequelize.INTEGER
-      },
+      // userId: {
+      //   allowNull: ,
+      //   type: Sequelize.INTEGER
+      // },
       title: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       photo: {
+        allowNull: true,
         type: Sequelize.TEXT
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
