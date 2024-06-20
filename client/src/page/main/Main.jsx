@@ -1,7 +1,15 @@
-import React from'react';
-function Main({ title }) {
+import React from 'react';
+import './Main.css';
+
+function Main() {
   return (
-      <div><h1>Main</h1></div>
+    <div className="main-container">
+      <img
+        src='https://miraderevnya.ru/imagetransform/width_900/uploads/blog/cotedzh.jpg'
+        alt='дом'
+        className="main-image"
+      />
+    </div>
   );
 }
 
