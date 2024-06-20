@@ -14,7 +14,7 @@ function Registration({ setUser }) {
     const onHandleSubmit = async (event) => {
         event.preventDefault();
         try {
-            if (password.trim() === cpassword.trim(){
+            if (password.trim() === cpassword.trim()){
                 const { data } = await requestAxios.post('/auth/registration', {
                     name,
                     email,
@@ -26,7 +26,7 @@ function Registration({ setUser }) {
                     navigate('/')
                 }
                 return
-            })
+            }
             setError('Пароли не совпадают!')
         } catch ({ message }) {
             setError(message);

@@ -1,33 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom';
+import Authorization from '../page/auth/Authorization';
+import Registration from '../page/auth/Registration';
 import './App.css'
+import Property from '../page/property/Property';
+import Favorite from '../page/favorite/Favorite';
+import Navbar from '../page/navbar/Navbar';
+import Main from '../page/main/Main';
+
+
+import requestAxios, { setAccessToken } from '../services/axios';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState()
+  const [property, setProperty] = useState()
+  const [favorite, setFavorite] = useState()
+
+  const axiosProrerty = async () => {
+    const { data } = await requestAxios.get('/property')
+    if (data.message === 'success') {
+      setProperty(data.property)
+    }
+  }
+
+  const axiosFavorite = async () => {
+    const { data } = await requestAxios.get('/favorite')
+    if (data.message === 'success') {
+      setFavorite(data.favorite)
+    }
+  }
+
+  const AxiosCheckUser = async () => {
+    const { data } = await requestAxios.get('/tokens/refresh')
+    if (data.message === 'success') {
+      setUser(data.user)
+      setAccessToken(data.setAccessToken)
+    }
+  }
+
+  useEffect(() => {
+    axiosFavorite()
+    axiosProrerty()
+    AxiosCheckUser()
+  }, [])
 
   return (
     <>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Navbar user={user} setUser={setUser} />
+        <h1>Добро пожаловать на AVITO </h1>
+
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route
+            path='/property'
+            element={<Property property={property} setProperty={setProperty} />}
+          />
+          <Route
+            path='/favorite'
+            element={
+              <Favorite favorite={favorite} setFavorite={setFavorite} user={user} />
+            }
+          />
+          <Route
+            path='/registration'
+            element={<Registration setUser={setUser} />}
+          />
+          <Route
+            path='/authorization'
+            element={<Authorization setUser={setUser} />}
+          />
+
+          <Route path='*' element={<h1>404</h1>} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+
+
+
     </>
   )
 }
