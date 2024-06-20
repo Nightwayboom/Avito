@@ -4,9 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
-    static associate(models) {
-      this.hasMany(PropertyCategory, 'propertyCategoryId')
-      this.hasOne(Favorite, 'id')
+    static associate({PropertyCategory,Favorite}) {
+      this.hasMany(PropertyCategory, {foreignKey:'propertyCategoryId'})
+      this.hasOne(Favorite,{foreignKey: 'id'})
     }
   }
   Property.init({
