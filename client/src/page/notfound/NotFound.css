@@ -1,0 +1,27 @@
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}
+
+.notfound-video {
+    margin-top: 20px;
+    max-width: 80%;
+    border: 2px solid #fff;
+}
+
+.notfound-container a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.notfound-container a:hover {
+    text-decoration: underline;
+}

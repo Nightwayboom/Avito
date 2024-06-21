@@ -10,6 +10,9 @@ export default defineConfig({
 				target: 'http://localhost:3000/',
 				changeOrigin: true,
 			},
+			'/img': {
+				target: 'http://localhost:3000/static',
+			},
 		},
 	},
 })
