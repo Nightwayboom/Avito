@@ -2,13 +2,12 @@
 
 .property-card {
   background-color: rgb(199, 198, 198);
-  border: 1px solid rgb(199, 198, 198);
+  border: 1px solid rgb(165, 155, 155);
   border-radius: 8px;
   overflow: hidden;
-  width: 300px;
+  width: 400px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  margin-bottom: 20px;
 }
 
 .property-card:hover {

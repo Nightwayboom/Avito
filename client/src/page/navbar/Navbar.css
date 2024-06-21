@@ -7,6 +7,9 @@
   padding: 1rem;
   font-family: Arial, sans-serif;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 98%;
 }
 
 .nav-links {
@@ -28,6 +31,7 @@
 .logo {
   display: flex;
   align-items: center;
+  margin-left: 50px;
 }
 
 .logo img {

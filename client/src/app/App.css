@@ -1,9 +1,14 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
-  color: #343a40;
+  background: url('../../../public/background.jpg')no-repeat center center fixed;    
+background-position: center center;      
+background-repeat: no-repeat;      
+ background-attachment: fixed;      
+background-size: cover;      
+background-color: #464646; 
 }
+
 
 h1 {
   color: #343a40;
@@ -17,3 +22,4 @@ h1 {
   margin: 0 auto;
   padding: 0 20px;
 }
+
