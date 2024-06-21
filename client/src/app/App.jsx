@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Authorization from '../page/auth/Authorization'
@@ -8,13 +7,14 @@ import Property from '../page/property/Property'
 import Favorite from '../page/favorite/Favorite'
 import Navbar from '../page/navbar/Navbar'
 import Main from '../page/main/Main'
-import NotFound from '../page/notfound/NotFound';
+import NotFound from '../page/notfound/NotFound'
+import Footer from '../page/footer/Footer'
 import requestAxios, { setAccessToken } from '../services/axios'
 
 function App() {
 	const [user, setUser] = useState()
 	const [property, setProperty] = useState()
-	const [favorite, setFavorite] = useState()
+	const [favorite, setFavorite] = useState([])
 
 	const axiosProrerty = async () => {
 		const { data } = await requestAxios.get('/property')
@@ -28,10 +28,11 @@ function App() {
 	}
 
 	const axiosFavorite = async () => {
-		const { data } = await requestAxios.get('/favorite')
-    console.log(data);
+		const { data } = await requestAxios.get('/favorites')
 		if (data.message === 'success') {
-			setFavorite(data.favorite)
+			data.favorites.forEach(favorite => {
+				setFavorite(prev => [...prev, favorite.Property])
+			})
 		}
 	}
 
@@ -52,7 +53,12 @@ function App() {
 	return (
 		<>
 			<div>
-				<Navbar user={user} setUser={setUser} />
+				<Navbar
+					user={user}
+					setUser={setUser}
+					property={property}
+					setProperty={setProperty}
+				/>
 
 				<Routes>
 					<Route path='/' element={<Main />} />
@@ -63,6 +69,7 @@ function App() {
 								property={property}
 								setProperty={setProperty}
 								user={user}
+								setFavorite={setFavorite}
 							/>
 						}
 					/>
@@ -85,11 +92,12 @@ function App() {
 						element={<Authorization setUser={setUser} />}
 					/>
 
-					<Route path='*' element={<NotFound />} /> 
+					<Route path='*' element={<NotFound />} />
 				</Routes>
+				<Footer />
 			</div>
 		</>
 	)
 }
 
-export default App;
+export default App

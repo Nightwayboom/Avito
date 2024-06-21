@@ -4,7 +4,7 @@ import requestAxios, { setAccessToken } from '../../services/axios'
 import './Navbar.css'
 import FormCreateProperty from '../property/FormCreateProperty'
 
-function Navbar({ user, setUser }) {
+function Navbar({ user, setUser, property, setProperty }) {
 	const onHandleLogout = async () => {
 		const { data } = await requestAxios.get('/auth/logout')
 		if (data.message === 'success') {
@@ -28,7 +28,10 @@ function Navbar({ user, setUser }) {
 					<>
 						<div>Привет, {user.name}!</div>
 						{user.isAdmin ? (
-							<FormCreateProperty />
+							<FormCreateProperty
+								property={property}
+								setProperty={setProperty}
+							/>
 						) : (
 							<NavLink to='/favorite'>Избранное</NavLink>
 						)}

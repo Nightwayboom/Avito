@@ -4,7 +4,7 @@ import PropertyCard from './PropertyCard'
 import FormCreateProperty from './FormCreateProperty'
 import './Property.css'
 
-function Property({ property,setProperty,user }) {
+function Property({ property, setProperty, user, setFavorite }) {
 	// const [property, setProperty] = useState([])
 
 	// const axiosProperty = async () => {
@@ -29,10 +29,11 @@ function Property({ property,setProperty,user }) {
 				{property &&
 					property.map(proper => (
 						<PropertyCard
-							proper={proper}
 							key={proper.id}
+							proper={proper}
 							setProperty={setProperty}
 							user={user}
+							setFavorite={setFavorite}
 						/>
 					))}
 			</div>

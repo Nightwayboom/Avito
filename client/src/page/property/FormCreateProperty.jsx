@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './FormCreateProperty.css'
-import requestAxios from '../../services/axios';
+import requestAxios from '../../services/axios'
 
-const FormCreateProperty = () => {
+const FormCreateProperty = ({ property, setProperty }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [category, setCategory] = useState('')
 	const [title, setTitle] = useState('')
@@ -19,11 +19,11 @@ const FormCreateProperty = () => {
 		formData.append('price', price)
 		formData.append('description', description)
 		const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-		const result = await requestAxios.post('/property', formData, config)
-		console.log(result);
-
-		
-	
+		const { data } = await requestAxios.post('/property', formData, config)
+		if (data.message === 'success') {
+			setProperty(prev => [...prev, data.newProperties])
+			setIsModalOpen(false)
+		}
 	}
 
 	return (

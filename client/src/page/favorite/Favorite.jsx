@@ -1,16 +1,16 @@
 import React from 'react'
-import PropertyCard from '../property/PropertyCard'
+import FavoriteCard from './FavoriteCard'
 function Favorite({ favorite, setFavorite, user }) {
 	return (
 		<div className='property-container'>
 			<h1>Избранное</h1>
 			<div className='property-list'>
-				{property &&
-					property.map(proper => (
-						<PropertyCard
-							proper={proper}
-							key={proper.id}
-							setProperty={setProperty}
+				{favorite &&
+					favorite.map(favor => (
+						<FavoriteCard
+							favor={favor}
+							key={favor.id}
+							setFavorite={setFavorite}
 							user={user}
 						/>
 					))}

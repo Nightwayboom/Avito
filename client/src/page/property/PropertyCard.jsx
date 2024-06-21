@@ -1,13 +1,27 @@
 import React, { useState } from 'react'
 import './PropertyCard.css'
 import FormUpdateProperty from './FormUpdateProperty'
+import requestAxios from '../../services/axios'
 
-function PropertyCard({ proper, setProperty, user }) {
+function PropertyCard({ proper, setProperty, user, setFavorite }) {
 	const [isUpdate, setIsUpdate] = useState(false)
 
-	const addToFavorites = () => {
-		// Логика для добавления в избранное
-		// console.log(${proper.title} добавлен в избранное);
+	const addToFavorites = async () => {
+		const { data } = await requestAxios.post('/favorites', {
+			propertyId: proper.id,
+		})
+		if (data.message === 'success') {
+			console.log(data);
+			setFavorite(prev => [...prev, data.property.Property])
+		}
+	}
+	const DeleteProperty = async () => {
+		const { data } = await requestAxios.delete(`/property/${proper.id}`)
+		if (data.message === 'success') {
+			setProperty(prev =>
+				prev.filter(delProperty => delProperty.id !== proper.id)
+			)
+		}
 	}
 
 	return (
@@ -39,10 +53,7 @@ function PropertyCard({ proper, setProperty, user }) {
 									>
 										Изменить
 									</button>
-									<button
-										className='favorite-button'
-										onClick={() => console.log('Удалить')}
-									>
+									<button className='favorite-button' onClick={DeleteProperty}>
 										Удалить
 									</button>
 								</>
