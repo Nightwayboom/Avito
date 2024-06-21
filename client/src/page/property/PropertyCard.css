@@ -2,13 +2,11 @@
 
 .property-card {
   background-color: rgb(199, 198, 198);
-  border: 1px solid rgb(199, 198, 198);
+  border: 1px solid rgb(165, 155, 155);
   border-radius: 8px;
-  overflow: hidden;
-  width: 300px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow:hidden;
+  width: 400px;
   transition: transform 0.3s, box-shadow 0.3s;
-  margin-bottom: 20px;
 }
 
 .property-card:hover {
@@ -27,6 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .property-info h2 {
@@ -47,6 +46,7 @@
   color: #666;
   line-height: 1.6;
   margin-bottom: 10px;
+  text-wrap: nowrap;
 }
 
 .favorite-button {
