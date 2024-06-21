@@ -12,9 +12,9 @@ function FormUpdateProperty({ proper, setProperty, setIsUpdate }) {
     const [modalIsOpen, setModalIsOpen] = useState(true);
 
     useEffect(() => {
-        setTitle(proper?.title || '');
-        setPrice(proper?.price || '');
-        setDescription(proper?.description || '');
+        setTitle(proper?.title  || '');
+        setPrice(proper?.price  || '');
+        setDescription(proper?.description  || '');
     }, [proper]);
 
     const onHandleSubmit = async (event) => {
@@ -32,8 +32,7 @@ function FormUpdateProperty({ proper, setProperty, setIsUpdate }) {
                     prev.map((prop) => (prop.id === data.property.id ? data.property : prop))
                 );
                 setIsUpdate(false);
-
-                setModalIsOpen(false); // Закрыть модальное окно после успешного обновления
+                setModalIsOpen(false); 
             }
         } catch (error) {
             console.error("Ошибка при обновлении недвижимости", error);
@@ -46,8 +45,7 @@ function FormUpdateProperty({ proper, setProperty, setIsUpdate }) {
     };
 
     if (!proper) {
-
-        return null; // Или можно показать загрузку или сообщение об ошибке
+        return null; 
     }
 
     return (

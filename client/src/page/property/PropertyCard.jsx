@@ -1,20 +1,13 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 import './PropertyCard.css'
-import requestAxios from '../../services/axios'
+import FormUpdateProperty from './FormUpdateProperty'
 
 function PropertyCard({ proper, setProperty, user }) {
+	const [isUpdate, setIsUpdate] = useState(false)
+
 	const addToFavorites = () => {
 		// Логика для добавления в избранное
-		console.log(`${proper.title} добавлен в избранное`)
-	}
-	const DeleteProperty = async () => {
-		const { data } = await requestAxios.delete(`/property/${proper.id}`)
-		if (data.message === 'success') {
-			setProperty(prev =>
-				prev.filter(delProperty => delProperty.id !== proper.id)
-			)
-		}
+		// console.log(${proper.title} добавлен в избранное);
 	}
 
 	return (
@@ -23,17 +16,38 @@ function PropertyCard({ proper, setProperty, user }) {
 				<img src={proper.photo} alt={proper.title} className='property-image' />
 				<div className='property-info'>
 					<h2>{proper.title}</h2>
-					<h3 className='property-price'>Цена : {proper.price} $</h3>
+					<h3 className='property-price'>Цена: {proper.price} $</h3>
 					<p>{proper.description}</p>
-					{user && !user.isAdmin && (
-						<button className='favorite-button' onClick={addToFavorites}>
-							Добавить в избранное
-						</button>
-					)}
-					{user && user.isAdmin && (
-						<button className='favorite-button' onClick={DeleteProperty}>
-							Удалить
-						</button>
+					{isUpdate ? (
+						<FormUpdateProperty
+							proper={proper}
+							setProperty={setProperty}
+							setIsUpdate={setIsUpdate}
+						/>
+					) : (
+						<>
+							{user && !user?.isAdmin && (
+								<button className='favorite-button' onClick={addToFavorites}>
+									Добавить в избранное
+								</button>
+							)}
+							{user && user?.isAdmin && (
+								<>
+									<button
+										className='favorite-button'
+										onClick={() => setIsUpdate(true)}
+									>
+										Изменить
+									</button>
+									<button
+										className='favorite-button'
+										onClick={() => console.log('Удалить')}
+									>
+										Удалить
+									</button>
+								</>
+							)}
+						</>
 					)}
 				</div>
 			</div>
@@ -41,4 +55,4 @@ function PropertyCard({ proper, setProperty, user }) {
 	)
 }
 
-export default PropertyCard;
+export default PropertyCard

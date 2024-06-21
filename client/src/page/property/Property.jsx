@@ -4,27 +4,26 @@ import PropertyCard from './PropertyCard'
 import FormCreateProperty from './FormCreateProperty'
 import './Property.css'
 
-function Property({ user }) {
-	const [property, setProperty] = useState([])
+function Property({ property,setProperty,user }) {
+	// const [property, setProperty] = useState([])
 
-	const axiosProperty = async () => {
-		const { data } = await requestAxios.get('/property')
-		if (data.message === 'success') {
-			const updateData = data.allProperties.map(proper => {
-				proper.isShow = true
-				return proper
-			})
-			setProperty(updateData)
-		}
-	}
+	// const axiosProperty = async () => {
+	// 	const { data } = await requestAxios.get('/property')
+	// 	if (data.message === 'success') {
+	// 		const updateData = data.allProperties.map(proper => {
+	// 			proper.isShow = true
+	// 			return proper
+	// 		})
+	// 		setProperty(updateData)
+	// 	}
+	// }
 
-	useEffect(() => {
-		axiosProperty()
-	}, [])
+	// useEffect(() => {
+	// 	axiosProperty()
+	// }, [])
 
 	return (
 		<div className='property-container'>
-			{user && user?.isAdmin && <FormCreateProperty />}
 			<h1>Недвижимость</h1>
 			<div className='property-list'>
 				{property &&
