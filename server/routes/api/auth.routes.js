@@ -6,14 +6,15 @@ const jwtConfig = require('../../config/jwtConfig');
 
 router.post('/registration', async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-
-    if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
+    const { name, email,lastName, isAdmin = false, password } = req.body;
+    
+    if (name.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '') {
       res.status(400).json({ message: 'заполните все поля' });
       return;
     }
-
+    
     const userInDb = await User.findOne({ where: { email } });
+    // console.log(1,req.body);
 
     if (userInDb) {
       res
@@ -23,7 +24,7 @@ router.post('/registration', async (req, res) => {
     }
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({ name, email, password: hashPassword });
+    const user = await User.create({ name,lastName, isAdmin , email, password: hashPassword });
 
     delete user.dataValues.password;
 
@@ -60,7 +61,7 @@ router.post('/authorization', async (req, res) => {
         delete user.dataValues.password;
         console.log(user);
         const { accessToken, refreshToken } = generateTokens({ user });
-        console.log(refreshToken);
+        // console.log(refreshToken);
         res
           .status(200)
           .cookie('refresh', refreshToken, { httpOnly: true })

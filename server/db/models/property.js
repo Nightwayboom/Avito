@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
     static associate({ PropertyCategory, Favorite }) {
       this.belongsTo(PropertyCategory, { foreignKey: "propertyCategoryId" });
-      this.hasOne(Favorite, { foreignKey: "id" });
+      this.hasOne(Favorite, { foreignKey: "propertyId" });
     }
   }
   Property.init(
@@ -13,10 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      // userId: {
-      //   allowNull: false,
-      //   type: DataTypes.INTEGER
-      // },
       title: {
         allowNull: false,
         type: DataTypes.TEXT,

@@ -1,0 +1,74 @@
+.retro-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.retro-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+}
+
+.retro-modal h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.retro-form-group {
+  margin-bottom: 15px;
+}
+
+.retro-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.retro-form-group input[type='text'],
+.retro-form-group textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.retro-form-group textarea {
+  resize: vertical;
+}
+
+.retro-form-group input[type='submit'],
+.retro-form-group button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.retro-form-group input[type='submit']:hover,
+.retro-form-group button:hover {
+  background-color: #45a049;
+}
+
+.close-modal-button {
+  background-color: #f44336;
+  margin-left: 10px;
+}
+
+.close-modal-button:hover {
+  background-color: #da190b;
+}

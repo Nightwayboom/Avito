@@ -7,8 +7,6 @@ import Property from '../page/property/Property';
 import Favorite from '../page/favorite/Favorite';
 import Navbar from '../page/navbar/Navbar';
 import Main from '../page/main/Main';
-
-
 import requestAxios, { setAccessToken } from '../services/axios';
 
 
@@ -40,7 +38,7 @@ function App() {
   }
 
   useEffect(() => {
-    axiosFavorite()
+    // axiosFavorite()
     axiosProrerty()
     AxiosCheckUser()
   }, [])
@@ -50,13 +48,12 @@ function App() {
 
       <div>
         <Navbar user={user} setUser={setUser} />
-        <h1>Добро пожаловать на AVITO </h1>
 
         <Routes>
           <Route path='/' element={<Main />} />
           <Route
             path='/property'
-            element={<Property property={property} setProperty={setProperty} />}
+            element={<Property property={property} setProperty={setProperty}user={user}/>}
           />
           <Route
             path='/favorite'
