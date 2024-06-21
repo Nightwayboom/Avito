@@ -32,6 +32,7 @@ function FormUpdateProperty({ proper, setProperty, setIsUpdate }) {
                     prev.map((prop) => (prop.id === data.property.id ? data.property : prop))
                 );
                 setIsUpdate(false);
+
                 setModalIsOpen(false); // Закрыть модальное окно после успешного обновления
             }
         } catch (error) {
@@ -45,6 +46,7 @@ function FormUpdateProperty({ proper, setProperty, setIsUpdate }) {
     };
 
     if (!proper) {
+
         return null; // Или можно показать загрузку или сообщение об ошибке
     }
 
