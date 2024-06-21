@@ -13,7 +13,7 @@ function PropertyCard({ proper, setProperty, user }) {
 				<img src={proper.photo} alt={proper.title} className='property-image' />
 				<div className='property-info'>
 					<h2>{proper.title}</h2>
-					<h3 className='property-price'>Цена : {proper.price} $</h3>
+					<h3 className='property-price'>Цена : {proper.price} $ за ночь</h3>
 					<p>{proper.description}</p>
 					<button className='favorite-button' onClick={addToFavorites}>
 						Добавить в избранное

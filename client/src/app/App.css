@@ -1,12 +1,6 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background: url('../../../public/background.jpg')no-repeat center center fixed;    
-background-position: center center;      
-background-repeat: no-repeat;      
- background-attachment: fixed;      
-background-size: cover;      
-background-color: #464646; 
 }
 
 
