@@ -19,7 +19,10 @@ const upload = multer({ storage })
 
 router.get('/', async (req, res) => {
 	try {
-		const allProperties = await Property.findAll({ where: req.query })
+		const allProperties = await Property.findAll({
+			where: req.query,
+			order: [['id', 'ASC']],
+		})
 		res.status(200).json({ message: 'success', allProperties })
 	} catch ({ message }) {
 		res.status(500).json({ error: message })
@@ -39,14 +42,14 @@ router.get('/:propertyId', async (req, res) => {
 router.post('/', upload.single('photo'), async (req, res) => {
 	try {
 		const { propertyCategoryId, title, price, description } = req.body
-    const {filename} = req.file
-    console.log(filename);
+		const { filename } = req.file
+		console.log(filename)
 		const newProperties = await Property.create({
 			propertyCategoryId,
 			title,
 			price,
 			description,
-			photo : `img/${filename}`,
+			photo: `img/${filename}`,
 		})
 		if (newProperties) {
 			res.status(201).json({ message: 'success', newProperties })
@@ -62,7 +65,7 @@ router.put('/:propertyId', async (req, res) => {
 	try {
 		const { propertyId } = req.params
 		const { propertyCategoryId, title, price, description, photo } = req.body
-		const updateProperty = await Property.create(
+		const updateProperty = await Property.update(
 			{
 				propertyCategoryId,
 				title,
@@ -73,7 +76,8 @@ router.put('/:propertyId', async (req, res) => {
 			{ where: { id: propertyId } }
 		)
 		if (updateProperty[0] > 0) {
-			res.status(200).json({ message: 'success', updateProperty })
+			const property = await Property.findOne({ where: { id: propertyId } })
+			res.status(200).json({ message: 'success', property })
 			return
 		}
 		res.status(400).json({ message: 'НЕА' })
