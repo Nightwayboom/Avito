@@ -25,7 +25,7 @@ function PropertyCard({ proper, setProperty, user }) {
 					<h2>{proper.title}</h2>
 					<h3 className='property-price'>Цена : {proper.price} $</h3>
 					<p>{proper.description}</p>
-					{user && (
+					{user && !user.isAdmin && (
 						<button className='favorite-button' onClick={addToFavorites}>
 							Добавить в избранное
 						</button>
