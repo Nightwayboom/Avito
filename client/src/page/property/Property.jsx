@@ -24,7 +24,7 @@ function Property({ user }) {
 
 	return (
 		<div className='property-container'>
-			{user && user.isAdmin && <FormCreateProperty />}
+			{user && user?.isAdmin && <FormCreateProperty />}
 			<h1>Недвижимость</h1>
 			<div className='property-list'>
 				{property &&
