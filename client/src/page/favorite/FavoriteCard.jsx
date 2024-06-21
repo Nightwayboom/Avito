@@ -11,6 +11,7 @@ function FavoriteCard({ favor, setFavorite, user }) {
 			setFavorite(prev =>
 				prev.filter(delFavor => delFavor.id !== favor.id)
 			)
+			alert('Успешно')
 		}
 	}
 

@@ -17,7 +17,7 @@ function Registration({ setUser }) {
         event.preventDefault();
         try {
             if (password.trim() === cpassword.trim()) {
-                const isAdmin = true
+                const isAdmin = false
                 const { data } = await requestAxios.post('/auth/registration', {
                     name,
                     lastName,

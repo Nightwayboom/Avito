@@ -7,7 +7,7 @@ const NotFound = () => {
         <div className="notfound-container">
             <h1>404 - Страница не найдена</h1>
             <ReactPlayer
-                url="https://www.youtube.com/watch?v=jdLVdUHVa_w"
+                url="https://www.youtube.com/watch?v=xVWHbTsVCLg"
                 playing
                 loop
                 controls
@@ -15,9 +15,9 @@ const NotFound = () => {
                 height="100%"
                 className="notfound-video"
             />
-            <p>Кажется, вы заблудились. Вернитесь на <a href="/">главную страницу</a>.</p>
+            <p>СЛАВА С ДНЕМ РОЖДЕНИЯ! <a href="/">главную страницу</a>.</p>
         </div>
-    );
+    );    
 }
 
 export default NotFound;

@@ -1,5 +1,6 @@
 import React from 'react'
 import FavoriteCard from './FavoriteCard'
+
 function Favorite({ favorite, setFavorite, user }) {
 	return (
 		<div className='property-container'>

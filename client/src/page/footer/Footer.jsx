@@ -12,7 +12,7 @@ function Footer() {
 					</p>
 					<p>
 						Email службы поддержки:{' '}
-						<a href='mailto:support@example.com'>support@example.com</a>
+						<a href='mailto:support@example.com'>popa_suslika_a_ne@elbrus.ru</a>
 					</p>
 				</div>
 			</div>
