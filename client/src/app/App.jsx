@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Authorization from '../page/auth/Authorization'
@@ -7,6 +8,7 @@ import Property from '../page/property/Property'
 import Favorite from '../page/favorite/Favorite'
 import Navbar from '../page/navbar/Navbar'
 import Main from '../page/main/Main'
+import NotFound from '../page/notfound/NotFound';
 import requestAxios, { setAccessToken } from '../services/axios'
 
 function App() {
@@ -83,11 +85,11 @@ function App() {
 						element={<Authorization setUser={setUser} />}
 					/>
 
-					<Route path='*' element={<h1>404</h1>} />
+					<Route path='*' element={<NotFound />} /> 
 				</Routes>
 			</div>
 		</>
 	)
 }
 
-export default App
+export default App;
