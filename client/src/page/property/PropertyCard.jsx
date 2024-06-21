@@ -1,3 +1,4 @@
+
 import React from 'react'
 import './PropertyCard.css'
 import requestAxios from '../../services/axios'
@@ -40,4 +41,4 @@ function PropertyCard({ proper, setProperty, user }) {
 	)
 }
 
-export default PropertyCard
+export default PropertyCard;
