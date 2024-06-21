@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT
     },
-    allowNull: false,
     isAdmin: {
+      allowNull: false,
       type: DataTypes.BOOLEAN
     },
   }, {

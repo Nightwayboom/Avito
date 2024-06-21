@@ -3,7 +3,7 @@ let accessToken = "";
 
 const requestAxios = axios.create({
   baseURL: "/api",
-  withCredentials: true,
+  // withCredentials: true,
   headers: { "Content-Type": "application/json" },
 });
 

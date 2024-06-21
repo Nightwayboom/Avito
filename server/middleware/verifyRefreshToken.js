@@ -5,13 +5,13 @@ async function verifyRefreshToken(req, res, next) {
   try {
   
     const { refresh } = req.cookies;
-    console.log(refresh);
-    let { user } = jwt.verify(refresh, process.env.REFRESH_TOKEN);
-    console.log(123);
+    // console.log(refresh);
+    let { user } = jwt.verify(refresh, 'R');
+    // console.log(123);
  
     user = await User.findOne({
       where: { id: user.id },
-      attributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name','lastName','isAdmin', 'email'],
     });
 
     res.locals.user = user;
