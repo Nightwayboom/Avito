@@ -1,18 +1,29 @@
 import React, { useState } from 'react'
 import './FormCreateProperty.css'
+import requestAxios from '../../services/axios';
 
 const FormCreateProperty = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [category, setCategory] = useState('')
 	const [title, setTitle] = useState('')
-	const [director, setDirector] = useState('')
-	const [year, setYear] = useState('')
-	const [img, setImg] = useState('')
-	const [rating, setRating] = useState('')
+	const [price, setPrice] = useState('')
+	const [description, setDescription] = useState('')
+	const [photo, setPhoto] = useState({})
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
-		// Обработка данных формы
-		console.log({ title, director, year, genre, description, userId: 1, genreId : movie.id })
+		const formData = new FormData()
+		formData.append('photo', photo[0])
+		formData.append('title', title)
+		formData.append('propertyCategoryId', category)
+		formData.append('price', price)
+		formData.append('description', description)
+		const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+		const result = await requestAxios.post('/property', formData, config)
+		console.log(result);
+
+		
+	
 	}
 
 	return (
@@ -21,71 +32,74 @@ const FormCreateProperty = () => {
 				onClick={() => setIsModalOpen(true)}
 				className='open-modal-button'
 			>
-				Добавить фильм
+				Добавить недвижимость
 			</button>
 			{isModalOpen && (
-				<div className='retro-modal-overlay'>
-					<div className='retro-modal'>
-						<h2>Добавить фильм</h2>
+				<div className='modal-overlay'>
+					<div className='modal'>
+						<h2>Добавить недвижимость</h2>
 						<form onSubmit={handleSubmit}>
-							<div className='retro-form-group'>
-								<label htmlFor='title'>Название фильма:</label>
+							<div className='form-group'>
+								<label htmlFor='category'>Наименование категории:</label>
+								<select
+									id='category'
+									value={category}
+									onChange={e => setCategory(e.target.value)}
+									required
+								>
+									<option value=''>Выберите категорию</option>
+									<option value='2'>Дом</option>
+									<option value='1'>Апартаменты</option>
+									<option value='3'>Квартира</option>
+								</select>
+							</div>
+							<div className='form-group'>
+								<label htmlFor='price'>Полное название:</label>
 								<input
 									type='text'
-									id='title'
+									id='price'
 									value={title}
 									onChange={e => setTitle(e.target.value)}
 									required
 								/>
-							</div>
-							<div className='retro-form-group'>
-								<label htmlFor='director'>Режиссер:</label>
+								<label htmlFor='price'>Цена:</label>
 								<input
-									type='text'
-									id='director'
-									value={director}
-									onChange={e => setDirector(e.target.value)}
+									type='number'
+									id='price'
+									value={price}
+									onChange={e => setPrice(e.target.value)}
 									required
 								/>
 							</div>
-							<div className='retro-form-group'>
-								<label htmlFor='year'>Год выпуска:</label>
-								<input
-									type='text'
-									id='year'
-									value={year}
-									onChange={e => setYear(e.target.value)}
-									required
-								/>
-							</div>
-							<div className='retro-form-group'>
-								<label htmlFor='genre'>Жанр:</label>
-								<input
-									type='text'
-									id='genre'
-									value={year}
-									onChange={e => setImg(e.target.value)}
-									required
-								/>
-							</div>
-							<div className='retro-form-group'>
+							<div className='form-group'>
 								<label htmlFor='description'>Описание:</label>
 								<textarea
 									id='description'
 									rows='4'
-									value={rating}
-									onChange={e => setRating(e.target.value)}
+									value={description}
+									onChange={e => setDescription(e.target.value)}
 									required
 								/>
 							</div>
-							<button type='submit'>Добавить</button>
-							<button
-								type='button'
-								onClick={() => setIsModalOpen(false)}
-								className='close-modal-button'
-							>
-								Закрыть
-							</button>
+							<div className='form-group'>
+								<label htmlFor='files'>Фото:</label>
+								<input
+									type='file'
+									id='files'
+									onChange={e => setPhoto(e.target.files)}
+									required
+								/>
+							</div>
+							<div className='button-group'>
+								<button type='submit'>Добавить</button>
+								<button
+									type='button'
+									onClick={() => setIsModalOpen(false)}
+									className='close-modal-button'
+								>
+									Закрыть
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -93,4 +107,5 @@ const FormCreateProperty = () => {
 		</div>
 	)
 }
+
 export default FormCreateProperty
